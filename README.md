@@ -1,6 +1,10 @@
 # dotfiles
 dotfiles
 
+## setting.json
+vscodeのsetting.json
+macの配置場所： $HOME/Library/Application\ Support/Code/User/
+
 ## vim ColorSheme filepath
 ```
 $ ls -la /usr/share/vim/vim81/colors/
