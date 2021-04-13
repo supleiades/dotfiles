@@ -135,3 +135,5 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 " clipboardをon
 set clipboard=unnamedplus
 
+" 挿入モードを抜けた時 IM がオフ
+inoremap <ESC> <ESC>:set iminsert=0<CR>`

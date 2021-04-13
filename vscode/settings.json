@@ -8,15 +8,18 @@
     },
     "python.jediEnabled": false,
     "vim.autoSwitchInputMethod.enable": true,
-    "vim.autoSwitchInputMethod.defaultIM": "com.apple.inputmethod.Kotoeri.Roman",
+    "vim.autoSwitchInputMethod.defaultIM": "com.apple.inputmethod.Kotoeri.RomajiTyping.Roman",
     "vim.autoSwitchInputMethod.obtainIMCmd": "/usr/local/bin/im-select",
     "vim.autoSwitchInputMethod.switchIMCmd": "/usr/local/bin/im-select {im}",
     "vim.insertModeKeyBindings": [
         {
             "before": ["j", "j"],
             "after": ["<Esc>"]
+        },
+        {
+            "before": ["っ", "j"],
+            "after": ["<Esc>"]
         }
     ],
     "vim.hlsearch": true
 }
-
