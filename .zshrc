@@ -2,7 +2,7 @@
 PATH=/usr/local/Cellar/git/2.26.1_1/bin:$PATH
 export PATH
 
-eval "$(anyenv init -)"
+#eval "$(anyenv init -)"
 
 # 色を使用
 autoload -Uz colors ; colors
@@ -52,49 +52,24 @@ zstyle ':completion:*' list-colors ''
 # %*    時間(hh:flag_mm:ss)
 # %T    時間(hh:mm)
 # %t    時間(hh:mm(am/pm))
-PROMPT='%F{cyan}[ %?:%f%F{red}%~%f%F{cyan} ]#%f%F{yellow}>>>%f '
+#PROMPT='%F{cyan}[ %?:%f%F{red}%~%f%F{cyan} ]#%f%F{yellow}>>>%f '
 #PROMPT=`%{$fg[red]%}[ <%?> : %~ ]>>> %{$reset_color%}`
 
 
-#export ZPLUG_HOME=$HOME/.zplug
-#source $ZPLUG_HOME/init.zsh
-#
-##
-## alien theme
-##
-#zplug "eendroroy/alien"
-## 左側のプロンプト
-#export ALIEN_SECTIONS_LEFT=(
-#  exit
-#  user
-#  path
-#  vcs_branch:async
-## 以下のエラーメッセージが出力されるのでコメントアウト
-## fatal: ambiguous argument 'master...@u': unknown revision or path not in the working tree.
-## Use '--' to separate paths from revisions, like this:
-##
-## vcs_status:async
-#  vcs_dirty:async
-#  newline
-#  ssh
-#  venv
-#  prompt
-#)
-#
-## 右側のプロンプト
-#export ALIEN_SECTIONS_RIGHT=(
-#  battery
-#  time
-#)
-#
-## Install plugins if there are plugins that have not been installed
-#if ! zplug check --verbose; then
-#    printf "Install? [y/N]: "
-#    if read -q; then
-#        echo; zplug install
-#    fi
-#fi
-## Then, source plugins and add commands to $PATH
-#zplug load --verbose
-#
-#
+#  詳細なgit logコマンドでコミットの流れを確認しやすくするため
+alias gitlog=git log --pretty='format:%C(yellow)%h %C(green)%cd %C(reset)%s %C(red)%d %C(cyan)[%an]' --date=iso
+
+
+# git-promptの読み込み
+source /usr/local/git-tools/git-prompt.sh
+# git-completionの読み込み
+fpath=(~/.zsh $fpath)
+zstyle ':completion:*:*:git:*' script /usr/local/git-tools/git-completion.bash
+autoload -Uz compinit && compinit
+# プロンプトのオプション表示設定
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
+GIT_PS1_SHOWSTASHSTATE=true
+GIT_PS1_SHOWUPSTREAM=auto
+# プロンプトの表示設定(好きなようにカスタマイズ可)
+setopt PROMPT_SUBST ; PS1='%F{green}%n:%F{cyan}%~%f %F{red}$(__git_ps1 "(%s)")%f \$ '
